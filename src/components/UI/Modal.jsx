@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useRef } from 'react'
 
 import { createPortal } from 'react-dom';
-const Modal = ({children  ,open , className =''}) => {
+const Modal = ({children  ,open , className ='',onClose}) => {
   const dialog =useRef();
 
   useEffect(()=>{
@@ -12,7 +12,7 @@ const Modal = ({children  ,open , className =''}) => {
     return ()=>modal.close();
   },[open])
   return (
-    createPortal(<dialog className={`modal ${className}`}  ref={dialog}  >{children}</dialog>,
+    createPortal(<dialog className={`modal ${className}`}  ref={dialog}  onClose={onClose} >{children}</dialog>,
     document.getElementById('modal'))
   )
 }
